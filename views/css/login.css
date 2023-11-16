@@ -1,0 +1,137 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+:root{
+    --azul:#264797;
+    --blanco:#fff;
+    --naranja:#e36421;
+    --sombra:2px 2px 20px rgba(0,0, 0, .3);
+}
+body{
+   /* background: url(../images/bg-fondo.jpeg);*/
+    
+    background-position: center;
+    background-attachment: contain;
+    background-size: cover;
+}
+.login-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.container{
+    background-color: rgba(255,255, 255, .1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.login{
+    background-color: var(--blanco);
+    width: 50vw;
+    min-height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+    box-shadow: var(--sombra);
+}
+.content{
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.5s;
+}
+.content img{
+    width: 80%;
+}
+.content:hover img{
+    transform: scale(1.1);
+}
+.login-form{
+    flex-basis: 50%;
+    padding: 25px;
+    background-color: var(--azul);
+}
+.title{
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 35px;
+    color: var(--blanco);
+    text-transform: uppercase;
+}
+.input-field{
+    background: transparent;
+    outline: none;
+    border-bottom: 2px solid white;
+    width: 100%;
+    height: 35px;
+    margin: 30px 0;
+}
+.input-field i{
+    color: var(--blanco);
+}
+.input-field input{
+    background: transparent;
+    width: 90%;
+    outline: none;
+    border: 0;
+    padding-left: 5px;
+    font-family: 'Roboto', sans-serif;
+}
+.input-field input:first-child{
+    color: #fff;
+}
+[text-blanco="blanco"]{
+    color: #fff;
+}
+::placeholder{
+    color: var(--blanco);
+}
+
+.btn{
+    width: 100%;
+    border: 0;
+    background-color: var(--blanco);
+    color: var(--azul);
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: 800;
+}
+.btn:hover{
+    background-color: orange;
+    color: #fff;
+}
+
+@media(max-width: 768px) {
+    .login{
+        flex-direction: column;
+        margin: 0 10px;
+    }
+}
+@media(max-width: 576px) {
+    .title{
+        font-size: 3.5vw;
+    }
+}
+@media(max-width: 500px) {
+    .title{
+        font-size: 3.5vw;
+        margin: 15px 0;
+    }
+    .input-field{
+       display: flex;
+       justify-content: center;
+       align-items: center;
+    }
+    .content img{
+        width: 50%;
+        margin: 10px 0;
+    }
+}

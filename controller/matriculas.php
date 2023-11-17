@@ -2,6 +2,8 @@
     require_once("../config/conexion.php");
     require_once("../models/Matriculas.php");
     $matriculas = new Matriculas();
+    require_once("../models/Autoevaluacion.php");
+    $autoevaluacion = new Autoevaluacion();
     $usu_id = $_SESSION["usu_id"];
 
     switch($_GET["opc"]){
@@ -31,7 +33,8 @@
         case "matriculas":
                 $datos=$matriculas->matriculadas($usu_id);
                 $data=Array();
-            //print_r($datos);
+                $datos1=$autoevaluacion->listar($usu_id);
+                $data1=Array();
                 foreach($datos as $row){
                     $sub_array = array();
                     //columnas de las tablas a mostrar segun select del modelo

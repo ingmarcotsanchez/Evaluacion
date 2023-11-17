@@ -2,6 +2,10 @@
 define( "BASE_URL", "/Evaluacion/views/");
 /* Llamamos al archivo de conexion.php */
 require_once("../config/conexion.php");
+$usu_id = $_SESSION["usu_id"];
+require_once("../models/Matriculas.php");
+$matriculadas = new Matriculas();
+$mat=$matriculadas->matriculadas($usu_id);
 if(isset($_SESSION["usu_id"])){
 ?>
 <!DOCTYPE html>
@@ -49,6 +53,7 @@ if(isset($_SESSION["usu_id"])){
                                         <th>Profesor</th>
                                         <th>Estado</th>
                                         <th></th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>

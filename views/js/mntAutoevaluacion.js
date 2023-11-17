@@ -8,7 +8,7 @@ function init(){
 
 function evaluar($mat_id){
     console.log($mat_id);
-    window.open('../mntAutEstudiante.php?mat_id='+mat_id+'','_blank');
+    window.open('mntAutEstudiante.php?mat_id='+mat_id+'','_blank');
 }
 
 

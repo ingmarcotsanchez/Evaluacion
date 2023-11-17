@@ -2,6 +2,7 @@
     require_once("../config/conexion.php");
     require_once("../models/Matriculas.php");
     $matriculas = new Matriculas();
+    $usu_id = $_SESSION["usu_id"];
 
     switch($_GET["opc"]){
         case "guardaryeditar":
@@ -28,29 +29,28 @@
                 $matriculas->delete_matricula($_POST["matr_id"]);
                 break;
         case "matriculas":
-                //$datos=$matriculas->matriculadas($_POST["usu_id"]);
-                $datos=$matriculas->matriculadas();
+                $datos=$matriculas->matriculadas($usu_id);
                 $data=Array();
+            //print_r($datos);
                 foreach($datos as $row){
                     $sub_array = array();
                     //columnas de las tablas a mostrar segun select del modelo
                     
                     $sub_array[] = $row["mat_codigo"] ." - ".$row["mat_nombre"] ;
                     $sub_array[] = $row["grupo"];
-                    /*if($_SESSION["rol_id"] == $row["rol_id"]){
-                        $sub_array[] = $row["usu_nombre"] ." ".$row["usu_apellidos"] ;
-                    }*/
+                  
                     $sub_array[] = $row["usu_nombre"] ." ".$row["usu_apellidos"] ;
-                    if($row["estado"] == 1){
-                        $sub_array[] = "<button type='button' onClick='matrina(".$row["matr_id"].");' class='btn btn-primary btn-sm'>Activo</button>";
-                    }else{
-                        $sub_array[] = "<button type='button' onClick='matract(".$row["matr_id"].");' class='btn btn-danger btn-sm'>Inactivo</button>";
-                    }
-                
-                    $sub_array[] = '<button type="button" onClick="evaluar('.$row["mat_id"].');"  id="'.$row["mat_id"].'" class="btn btn-warning btn-sm">Evaluar</button>';
+                    if($datos == 0){
+                        $sub_array[] = "<b class='text-success'>Realizada</b>";
                     
-                    $data[] = $sub_array;
+                        $sub_array[] = '<button disabled type="button" onClick="evaluar('.$row["mat_id"].');"  id="'.$row["mat_id"].'" class="btn btn-warning btn-sm">Evaluar</button>';
+                    }else{
+                        $sub_array[] = "<b class='text-danger'>No Realizada</b>";
+                        $sub_array[] = '<button type="button" onClick="evaluar('.$row["mat_id"].');"  id="'.$row["mat_id"].'" class="btn btn-warning btn-sm">Evaluar</button>';
+                    }
                 }
+                    $data[] = $sub_array;
+                
                 /*Formato del datatable, se usa siempre*/
                 $results = array(
                     "sEcho"=>1,

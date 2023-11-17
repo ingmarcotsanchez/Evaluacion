@@ -93,7 +93,7 @@
             return $resultado=$sql->fetchAll();
         }
 
-        public function matriculadas(){//$usu_id_est
+        public function matriculadas($usu_id_est){//$usu_id_est
             $conectar= parent::conexion();
             parent::set_names();
             $sql="SELECT
@@ -113,9 +113,9 @@
             INNER JOIN usuarios on matriculas.usu_id_pro = usuarios.usu_id
             INNER JOIN rol on matriculas.usu_id_pro = rol.rol_id
             WHERE 
-            usuarios.rol_id = 3";// AND matriculas.usu_id_est = ?";
+            usuarios.rol_id = 3 AND matriculas.usu_id_est = ?";
             $sql=$conectar->prepare($sql);
-            //$sql->bindValue(1,$usu_id_est);
+            $sql->bindValue(1,$usu_id_est);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }

@@ -68,7 +68,7 @@
                 
                 break;
         case "listar":
-                $datos=$matriculas->matriculacion();
+                $datos=$matriculas->matriculados();
                 $data=Array();
                 foreach($datos as $row){
                     $sub_array = array();

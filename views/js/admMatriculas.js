@@ -181,11 +181,10 @@ var ExcelToJSON = function() {
                 for (i = 0; i < MatriculaList.length; i++) {
 
                     var columns = Object.values(MatriculaList[i])
-
                     $.post("/Evaluacion/controller/matriculas.php?opc=guardar_desde_excel",{
                         mat_id : columns[0],
                         usu_id_est : columns[1],
-                        matr_grupo : columns[2],
+                        grupo : columns[2],
                         usu_id_pro : columns[3]
                         
                     }, function (data) {

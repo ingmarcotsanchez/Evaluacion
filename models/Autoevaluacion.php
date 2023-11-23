@@ -42,6 +42,18 @@
             return $resultado = $sql->fetchAll();
         }
 
+        public function completadas($usu_id,$mat_id){
+            $conectar = parent::Conexion();
+            parent::set_names();
+            $sql = "SELECT * FROM autoevaluacion_institucional
+            WHERE usu_id = ? AND mat_id = ?";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $usu_id);
+            $sql->bindValue(2, $mat_id);
+            $sql->execute();
+            return $resultado = $sql->fetchAll();
+        }
+
         public function evaluaciones(){
             $conectar = parent::Conexion();
             parent::set_names();

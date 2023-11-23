@@ -6,8 +6,8 @@ function init(){
     });
 }
 
-function evaluar($mat_id){
-    console.log($mat_id);
+function responder(mat_id){
+    console.log(mat_id);
     window.open('mntAutEstudiante.php?mat_id='+mat_id+'','_blank');
 }
 

@@ -5,7 +5,7 @@ require_once("../config/conexion.php");
 $usu_id = $_SESSION["usu_id"];
 require_once("../models/Matriculas.php");
 $matriculadas = new Matriculas();
-$mat=$matriculadas->matriculadas($usu_id);
+$mat=$matriculadas->matriculacion($usu_id);
 if(isset($_SESSION["usu_id"])){
 ?>
 <!DOCTYPE html>

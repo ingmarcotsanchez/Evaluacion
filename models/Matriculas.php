@@ -80,7 +80,9 @@
             usuarios.usu_nombre,
             usuarios.usu_apellidos,
             matriculas.grupo,
-            usuarios.usu_id as usuarios_profesores,
+            usuarios_profesores.usu_id as usuarios_profesores_id,
+            usuarios_profesores.usu_nombre as usuarios_profesores_nombre,
+            usuarios_profesores.usu_apellidos as usuarios_profesores_apellidos,
             matriculas.estado
             FROM matriculas
             INNER JOIN materias on matriculas.mat_id = materias.mat_id
@@ -93,32 +95,7 @@
             return $resultado=$sql->fetchAll();
         }
 
-        public function matriculadas($usu_id_est){//$usu_id_est
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="SELECT
-            matriculas.matr_id,
-            materias.mat_id,
-            materias.mat_codigo,
-            materias.mat_nombre,
-            usuarios.usu_id,
-            usuarios.usu_nombre,
-            usuarios.usu_apellidos,
-            matriculas.grupo,
-            rol.rol_id,
-            rol.rol_nombre,
-            matriculas.estado
-            FROM matriculas
-            INNER JOIN materias on matriculas.mat_id = materias.mat_id
-            INNER JOIN usuarios on matriculas.usu_id_pro = usuarios.usu_id
-            INNER JOIN rol on matriculas.usu_id_pro = rol.rol_id
-            WHERE 
-            usuarios.rol_id = 3 AND matriculas.usu_id_est = ?";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1,$usu_id_est);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        }
+        
 
         public function matriculas_id($matr_id){
             $conectar = parent::Conexion();

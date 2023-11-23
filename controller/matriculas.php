@@ -31,11 +31,14 @@
                 $matriculas->delete_matricula($_POST["matr_id"]);
                 break;
         case "matriculas":
-                $datos=$matriculas->matriculadas($usu_id);
+                $datos=$matriculas->matriculacion($usu_id);
+                //var_dump($datos);
                 $data=Array();
-                $datos1=$autoevaluacion->listar($usu_id);
-                $data1=Array();
+              
                 foreach($datos as $row){
+                    $dato1=$autoevaluacion->completadas($usu_id,$row['mat_id']);
+                    $dato1= count($dato1);
+             
                     $sub_array = array();
                     //columnas de las tablas a mostrar segun select del modelo
                     
@@ -43,16 +46,17 @@
                     $sub_array[] = $row["grupo"];
                   
                     $sub_array[] = $row["usu_nombre"] ." ".$row["usu_apellidos"] ;
-                    if($datos == 0){
+                    if($dato1 > 0){
                         $sub_array[] = "<b class='text-success'>Realizada</b>";
                     
                         $sub_array[] = '<button disabled type="button" onClick="evaluar('.$row["mat_id"].');"  id="'.$row["mat_id"].'" class="btn btn-warning btn-sm">Evaluar</button>';
                     }else{
                         $sub_array[] = "<b class='text-danger'>No Realizada</b>";
-                        $sub_array[] = '<button type="button" onClick="evaluar('.$row["mat_id"].');"  id="'.$row["mat_id"].'" class="btn btn-warning btn-sm">Evaluar</button>';
+                        $sub_array[] = '<button type="button" onClick="responder('.$row["mat_id"].');"  id="'.$row["mat_id"].'" class="btn btn-warning btn-sm">Evaluar</button>';
                     }
-                }
                     $data[] = $sub_array;
+                }
+                    
                 
                 /*Formato del datatable, se usa siempre*/
                 $results = array(
@@ -77,7 +81,7 @@
                     /*if($_SESSION["rol_id"] == $row["rol_id"]){
                         $sub_array[] = $row["usu_nombre"] ." ".$row["usu_apellidos"] ;
                     }*/
-                    $sub_array[] = $row["usu_nombre"] ." ".$row["usu_apellidos"] ;
+                    $sub_array[] = $row["usuarios_profesores_nombre"] ." ".$row["usuarios_profesores_apellidos"] ;
                     if($row["estado"] == 1){
                         $sub_array[] = "<button type='button' onClick='matrina(".$row["matr_id"].");' class='btn btn-primary btn-sm'>Activo</button>";
                     }else{

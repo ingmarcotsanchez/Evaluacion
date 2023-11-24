@@ -45,7 +45,7 @@
                     $sub_array[] = $row["mat_codigo"] ." - ".$row["mat_nombre"] ;
                     $sub_array[] = $row["grupo"];
                   
-                    $sub_array[] = $row["usu_nombre"] ." ".$row["usu_apellidos"] ;
+                    $sub_array[] = $row["usuarios_profesores_nombre"] ." ".$row["usuarios_profesores_apellidos"] ;
                     if($dato1 > 0){
                         $sub_array[] = "<b class='text-success'>Realizada</b>";
                     
